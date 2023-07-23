@@ -1,0 +1,6 @@
+jupyterlab
+ipywidgets
+pyprojroot
+matplotlib
+ipympl
+nbdime

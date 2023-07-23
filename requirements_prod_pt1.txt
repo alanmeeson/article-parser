@@ -1,0 +1,7 @@
+PyMuPDF
+torch
+torchvision
+opencv-python-headless
+pytesseract
+img2table
+tqdm

@@ -73,7 +73,7 @@ def identify_caption(
                 candidate_caption
                 for candidate_caption
                 in candidate_captions
-                if any(map(candidate_caption.text.lower().startswith, candidates_start_with))
+                if candidate_caption.text and any(map(candidate_caption.text.lower().startswith, candidates_start_with))
             ]
 
     # Then failing that, try all text blocks by distance
@@ -86,7 +86,7 @@ def identify_caption(
                 candidate_caption
                 for candidate_caption
                 in candidate_captions
-                if any(map(candidate_caption.text.lower().startswith, candidates_start_with))
+                if candidate_caption.text and any(map(candidate_caption.text.lower().startswith, candidates_start_with))
             ]
 
         if candidate_captions:
@@ -97,4 +97,4 @@ def identify_caption(
                 )
             )
 
-    return candidate_captions[0].text if len(candidate_captions) > 0 else None
+    return candidate_captions[0].text if candidate_captions else None

@@ -21,7 +21,7 @@ def parse_article(pdf: fitz.Document, layout_model: BaseLayoutModel) -> Dict:
         'tables': list()
     }
 
-    for page_num, page in tqdm(enumerate(pdf), total=len(pdf), desc="Processing PDF", unit='pages'):
+    for page_num, page in enumerate(pdf): #tqdm(enumerate(pdf), total=len(pdf), desc="Processing PDF", unit='pages'):
         image = get_page_image(page)
         layout = layout_model.detect(image)
         layout = sort_layout_by_columns(layout)

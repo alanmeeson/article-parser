@@ -8,7 +8,7 @@ from PIL import Image
 from article_parser.text_parser import ocr_text_blocks, extract_text_blocks
 from article_parser.figure_parser import extract_figure_blocks
 from article_parser.table_parser import extract_table_blocks
-
+from article_parser.region_filtering import non_max_suppression, sub_section_suppression
 from layoutparser.models.base_layoutmodel import BaseLayoutModel
 from layoutparser.models.detectron2.layoutmodel import Detectron2LayoutModel
 
@@ -24,6 +24,8 @@ def parse_article(pdf: fitz.Document, layout_model: BaseLayoutModel) -> Dict:
     for page_num, page in enumerate(pdf): #tqdm(enumerate(pdf), total=len(pdf), desc="Processing PDF", unit='pages'):
         image = get_page_image(page)
         layout = layout_model.detect(image)
+        layout = non_max_suppression(layout)
+        layout = sub_section_suppression(layout)
         layout = sort_layout_by_columns(layout)
         layout = ocr_text_blocks(layout, image)
 

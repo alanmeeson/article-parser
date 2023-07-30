@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='ArticleParser',
-    version='0.1.0',
+    version='0.2.0',
     description='A tool for extracting text, figures and tables from academic papers.',
     author="Alan Meeson",
     author_email="alan@carefullycalculated.co.uk",
